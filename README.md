@@ -32,6 +32,12 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+#### Optional (for autocompletion).
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+source ~/.bashrc
+alias k=kubectl
+complete -o default -F __start_kubectl k
+
 ---
 
 ## Add workers node(s)

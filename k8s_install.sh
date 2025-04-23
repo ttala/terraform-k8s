@@ -71,14 +71,11 @@ echo "[7] Running kube init on master node only..."
 # Configuration only for master node
 if [ $HOSTNAME = $master_node ]; then
     kubeadm init --pod-network-cidr=192.168.0.0/16
+    sleep 3
     kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
     kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
     apt-get install -y bash-completion
-    source <(kubectl completion bash) 
-    echo "source <(kubectl completion bash)" >> ~/.bashrc
-    source ~/.bashrc
-    alias k=kubectl
-    complete -o default -F __start_kubectl k
+
     #cat /var/log/cloud-init-output.log
 fi
 echo "[8] Finish ! "
