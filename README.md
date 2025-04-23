@@ -7,7 +7,7 @@ It deploys a simple two-node setup:
 
 ---
 
-## ⚙️ Default Configuration
+## Default Configuration
 
 - **Node Type**: `PLAY2-NANO`
 - **Operating System**: Ubuntu 22.04
@@ -15,7 +15,7 @@ It deploys a simple two-node setup:
 
 ---
 
-## 🚀 Prerequisites
+## Prerequisites
 
 Before running the script, ensure you're authenticated with Scaleway.  
 Refer to the official Terraform provider docs for guidance:  
@@ -23,7 +23,7 @@ Refer to the official Terraform provider docs for guidance:
 
 ---
 
-## 📦 Deployment
+## Deployment
 
 Once your cluster is created, connect to the **control plane node** and run the following to finalize the setup:
 
@@ -35,6 +35,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ---
 
 ## Add workers node(s)
+
 To join the worker node(s), extract the kubeadm join command from the control plane:
 ** cat /var/log/cloud-init-output.log | grep -A 1 'kubeadm join'
 
