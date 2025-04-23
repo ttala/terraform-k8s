@@ -33,10 +33,13 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ---
+
 ## Add workers node(s)
 To join the worker node(s), extract the kubeadm join command from the control plane:
 ** cat /var/log/cloud-init-output.log | grep -A 1 'kubeadm join'
 
 Copy and run the output command on each worker node.
+
+---
 
 ### Notes : This setup is minimal and intended for testing or learning purposes.
