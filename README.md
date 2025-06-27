@@ -25,6 +25,13 @@ Refer to the official Terraform provider docs for guidance:
 
 ## Deployment
 
+Run the command below to create your cluster:
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
 Once your cluster is created, connect to the **control plane node** and run the following to finalize the setup:
 
 ```bash

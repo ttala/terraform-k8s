@@ -1,5 +1,5 @@
 resource "scaleway_instance_ip" "master_ip" {
-  zone = "fr-par-1"
+  zone = var.zone
 }
 
 resource scaleway_vpc_private_network pnet {
@@ -32,7 +32,7 @@ resource "scaleway_instance_server" "master-node" {
 }
 
 resource "scaleway_instance_ip" "worker_ip" {
-  zone = "fr-par-1"
+  zone = var.zone
 }
 
 resource "scaleway_instance_server" "worker-node" {
