@@ -32,28 +32,12 @@ terraform plan
 terraform apply
 ```
 
-Once your cluster is created, connect to the **control plane node** and run the following to finalize the setup:
+Once your cluster is created, connect to the **control plane node** and run the following to finalize the setup and print the join token for worker nodes:
 
 ```bash
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-#### Optional (for autocompletion).
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+./k8s_setup.sh
 source ~/.bashrc
-alias k=kubectl
-complete -o default -F __start_kubectl k
-
----
-
-## Add workers node(s)
-
-To join the worker node(s), extract the kubeadm join command from the control plane:
-** cat /var/log/cloud-init-output.log | grep -A 1 'kubeadm join'
-
-Copy and run the output command on each worker node.
-
+```
 ---
 
 ### Notes : This setup is minimal and intended for testing or learning purposes.

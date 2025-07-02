@@ -31,6 +31,29 @@ resource "scaleway_instance_server" "master-node" {
 
 }
 
+resource "null_resource" "provision" {
+  depends_on = [scaleway_instance_server.master-node]
+
+  connection {
+    type        = "ssh"
+    user        = "root"
+    private_key = file("~/.ssh/id_rsa")
+    host        = scaleway_instance_server.master-node.public_ip
+  }
+
+  provisioner "file" {
+    source      = "k8s_setup.sh"
+    destination = "/root/k8s_setup.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /root/k8s_setup.sh"
+    ]
+  }
+}
+
+
 resource "scaleway_instance_ip" "worker_ip" {
   zone = var.zone
 }
